@@ -7,8 +7,11 @@ export default function App() {
     <div>
       <BrowserRouter>
         <Switch>
-          <Route path="login">
+          <Route path="/login">
             <Auth />
+          </Route>
+          <Route path="/register">
+            <Auth isSigningUp={true} />
           </Route>
           <Route exact path="/">
             <Home />
