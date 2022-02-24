@@ -1,18 +1,20 @@
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import Home from './components/Home';
+import Auth from './views/Auth';
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <Switch>
-        <div>
-          <Route>
-            <Home exact path="/" />
+    <div>
+      <BrowserRouter>
+        <Switch>
+          <Route path="login">
+            <Auth />
           </Route>
-          <Route>
-            <Auth path="/login" />
+          <Route exact path="/">
+            <Home />
           </Route>
-        </div>
-      </Switch>
-    </BrowserRouter>
+        </Switch>
+      </BrowserRouter>
+    </div>
   );
 }
