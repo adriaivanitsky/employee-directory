@@ -1,16 +1,33 @@
 import React from 'react';
+import { useState } from 'react';
 
-export default function AuthForm() {
+export default function AuthForm({ handleAuth }) {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await handleAuth(email, password);
+  };
+
   return (
     <form>
       <label>
-        <input type="text" placeholder="email"></input>
+        <input
+          onChange={(e) => setEmail(e.target.value)}
+          type="email"
+          placeholder="email"
+        ></input>
       </label>
 
       <label>
-        <input type="password" placeholder="password"></input>
+        <input
+          onChange={(e) => setPassword(e.target.value)}
+          type="password"
+          placeholder="password"
+        ></input>
       </label>
-      <button>submit</button>
+      <button onClick={handleSubmit}>submit</button>
     </form>
   );
 }
