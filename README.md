@@ -11,3 +11,5 @@ set up auth view
 make private route
 set up auth component
 set up auth form
+set up profile component
+create another form for user profile

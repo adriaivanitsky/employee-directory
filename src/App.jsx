@@ -1,6 +1,7 @@
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Home from './components/Home';
 import Auth from './views/Auth';
+import Profile from './components/Profile';
 
 export default function App() {
   return (
@@ -12,6 +13,15 @@ export default function App() {
           </Route>
           <Route path="/register">
             <Auth isSigningUp={true} />
+          </Route>
+          <Route path="/profile/create">
+            <Profile isCreatingProfile />
+          </Route>
+          <Route path="/profile/edit">
+            <Profile />
+          </Route>
+          <Route path="/profile">
+            <Profile />
           </Route>
           <Route exact path="/">
             <Home />
