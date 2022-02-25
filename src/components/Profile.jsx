@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { createProfile, getProfile } from '../services/profiles';
 import ProfileForm from '../components/ProfileForm';
 import { useHistory } from 'react-router-dom';
+import ProfileView from './ProfileView';
 
 export default function Profile({ isCreatingProfile = false }) {
   const [loading, setLoading] = useState(true);
@@ -40,11 +41,15 @@ export default function Profile({ isCreatingProfile = false }) {
   if (loading) return <h1>Loading...</h1>;
   return (
     <div>
-      <ProfileForm
-        profile={profile}
-        setProfile={setProfile}
-        handleCreate={handleCreate}
-      />
+      {profile ? (
+        <ProfileView profile={profile} />
+      ) : (
+        <ProfileForm
+          profile={profile}
+          setProfile={setProfile}
+          handleCreate={handleCreate}
+        />
+      )}
     </div>
   );
 }
