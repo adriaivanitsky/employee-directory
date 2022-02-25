@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getProfile } from '../services/profiles';
+import { createProfile, getProfile } from '../services/profiles';
 import ProfileForm from '../components/ProfileForm';
 import { useHistory } from 'react-router-dom';
 
@@ -12,6 +12,7 @@ export default function Profile({ isCreatingProfile = false }) {
     const fetchData = async () => {
       try {
         const data = await getProfile();
+        console.log(data);
         setProfile(data);
       } catch (error) {
         history.replace('/profile/create');
@@ -20,11 +21,30 @@ export default function Profile({ isCreatingProfile = false }) {
     };
     fetchData();
   }, []);
-  console.log(profile);
+
+  const handleCreate = async (name, email, bio, birthday) => {
+    try {
+      const data = await createProfile({ name, email, bio, birthday });
+      setProfile(data);
+      history.replace('/profile');
+    } catch (error) {
+      throw new Error('something went wrong');
+    }
+  };
+
+  const handleEdit = () => {
+    try {
+    } catch (error) {}
+  };
+
   if (loading) return <h1>Loading...</h1>;
   return (
     <div>
-      <ProfileForm profile={profile} />
+      <ProfileForm
+        profile={profile}
+        setProfile={setProfile}
+        handleCreate={handleCreate}
+      />
     </div>
   );
 }
