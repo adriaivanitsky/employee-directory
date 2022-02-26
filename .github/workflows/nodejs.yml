@@ -13,7 +13,7 @@ jobs:
         with:
           node-version: '16.x'
       - run: npm ci
-      - run: npm test
+      - run: npm test --passWithNoTests
         env:
           CI: true
           SUPABASE_URL: ${{secrets.SUPABASE_URL}}
